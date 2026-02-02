@@ -26,6 +26,7 @@ BUILTIN_PROVIDERS = {
 }
 
 
+# ------ Functions ------
 def _normalize_base_url(url: str) -> str:
     url = url.strip().rstrip("/")
     if not url.endswith("/v1"):
@@ -92,10 +93,7 @@ class OpenCode0(OpenCode):
             cfg["small_model"] = f"{provider}/{small_model_id}"
             cfg["provider"][provider]["models"][small_model_id] = {"name": small_model_id}
 
-
-
         cfg_json = json.dumps(cfg, ensure_ascii=False, indent=2)
-
         escaped_instruction = shlex.quote(instruction)
 
         env = {
@@ -106,19 +104,15 @@ class OpenCode0(OpenCode):
             "OPENCODE_FAKE_VCS": "git",
         }
 
-        # Write override config and execute opencode
+        # Construct command to write override config and run OpenCode
         command = (
-            "mkdir -p /logs/agent/opencode_config /logs/agent/opencode_logs; "
             f"mkdir -p {shlex.quote(XDG_CFG_HOME)}/opencode; "
             f"cat > {shlex.quote(OVERRIDE_CFG_PATH)} <<'__HARBOR_OPENCODE_JSON__'\n"
             f"{cfg_json}\n"
             "__HARBOR_OPENCODE_JSON__\n"
-            f"cp -f {shlex.quote(OVERRIDE_CFG_PATH)} "
-            "/logs/agent/opencode_config/opencode_override.json "
-            "2>/dev/null || true; "
             f"opencode --model {provider}/{model} run --format=json "
             f"{escaped_instruction} "
-            "2>&1 | tee /logs/agent/opencode.txt"
+            "2>&1"
         )
 
         return [ExecInput(command=command, env=env)]
