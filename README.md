@@ -20,33 +20,33 @@ PS: 为了避免 *API_KEY* 泄露，请及时拉取并更新至最新版本！�
 
 ### Installation
 
-    1. 创建 conda 环境
+1. 创建 conda 环境
 
-    ```bash
-    conda create -n harbor-agent-compat python=3.13 -y
-    conda activate harbor-agent-compat
-    ```
+```bash
+conda create -n harbor-agent-compat python=3.13 -y
+conda activate harbor-agent-compat
+```
 
-    当前测试基于 3.13，自行安装请确保与 Harbor 及相关依赖版本兼容。
+当前测试基于 3.13，自行安装请确保与 Harbor 及相关依赖版本兼容。
 
-    2. 从源码拉取项目
+2. 从源码拉取项目
 
-    ```bash
-    git clone https://github.com/Vulcan626/harbor-agent-compat.git
-    cd harbor-agent-compat
-    ```
+```bash
+git clone https://github.com/Vulcan626/harbor-agent-compat.git
+cd harbor-agent-compat
+```
 
-    3. 安装依赖
+3. 安装依赖
 
-    ```bash
-    # 安装 uv
-    pip install uv
+```bash
+# 安装 uv
+pip install uv
 
-    # 根据锁同步并安装
-    uv sync --all-extras
+# 根据锁同步并安装
+uv sync --all-extras
 
-    uv pip install -e .
-    ```
+uv pip install -e .
+```
 
 ### Usage
 
@@ -55,31 +55,31 @@ Harbor 使用见
 
 #### OpenCode
 
-  1. Provider 任意名称即可（请避免与官方 installed agent 重名，以及避免"_"字符影响解析）；
-  2. Model 选择自定义 BaseUrl + API 所支持的模型；
-  3. OpenCode 有 small model（默认为 Zen 托管的 gpt-5-nano，免费）作为 title generator，如果需要自定义 small model, 同样请确保是 API 所支持的模型。
+1. Provider 任意名称即可（请避免与官方 installed agent 重名，以及避免"_"字符影响解析）；
+2. Model 选择自定义 BaseUrl + API 所支持的模型；
+3. OpenCode 有 small model（默认为 Zen 托管的 gpt-5-nano，免费）作为 title generator，如果需要自定义 small model, 同样请确保是 API 所支持的模型。
 
-    ```bash
-    export OPENCODE_BASE_URL="http://14.103.68.46/v1"
-    export OPENAI_API_KEY="your-api-key"
+```bash
+export OPENCODE_BASE_URL="http://14.103.68.46/v1"
+export OPENAI_API_KEY="your-api-key"
 
-    # Default Example
-    harbor run \
-    -p /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/hard_tasks_15 \
-    -o /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/jobs__opencode__opus-4-5 \
-    --agent opencode0 \
-    --model ppapi/claude-opus-4-5-20251101 \
-    -k 1
+# Default Example
+harbor run \
+-p /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/hard_tasks_15 \
+-o /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/jobs__opencode__opus-4-5 \
+--agent opencode0 \
+--model ppapi/claude-opus-4-5-20251101 \
+-k 1
 
-    # Use custom small model
-    export OPENCODE_SMALL_MODEL=gpt-5-nano
+# Use custom small model
+export OPENCODE_SMALL_MODEL=gpt-5-nano
 
-    harbor run \
-    -p /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/hard_tasks_15 \
-    -o /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/jobs__opencode__opus-4-5 \
-    --agent opencode0 \
-    --model ppapi/claude-opus-4-5-20251101 \
-    -k 1
-    ```
+harbor run \
+-p /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/hard_tasks_15 \
+-o /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/jobs__opencode__opus-4-5 \
+--agent opencode0 \
+--model ppapi/claude-opus-4-5-20251101 \
+-k 1
+```
 
 #### Codex
