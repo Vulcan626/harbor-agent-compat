@@ -65,8 +65,8 @@ export OPENAI_API_KEY="your-api-key"
 
 # Default Example
 harbor run \
--p /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/hard_tasks_15 \
--o /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/jobs__opencode__opus-4-5 \
+-p your-path/tasks \
+-o your-path/jobs \
 --agent opencode0 \
 --model ppapi/claude-opus-4-5-20251101 \
 -k 1
@@ -75,8 +75,8 @@ harbor run \
 export OPENCODE_SMALL_MODEL=gpt-5-nano
 
 harbor run \
--p /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/hard_tasks_15 \
--o /mnt/nas/development/hzb/datasets/Kaggle-tb/Harbor_tasks_15/jobs__opencode__opus-4-5 \
+-p your-path/tasks \
+-o your-path/jobs \
 --agent opencode0 \
 --model ppapi/claude-opus-4-5-20251101 \
 -k 1
