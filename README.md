@@ -60,7 +60,7 @@ Harbor 使用见
 3. OpenCode 有 small model（默认为 Zen 托管的 gpt-5-nano，免费）作为 title generator，如果需要自定义 small model, 同样请确保是 API 所支持的模型。
 
 ```bash
-export OPENCODE_BASE_URL="http://14.103.68.46/v1"
+export CODEX_BASE_URL="http://your-base-url/v1"
 export OPENAI_API_KEY="your-api-key"
 
 # Default Example
@@ -83,3 +83,22 @@ harbor run \
 ```
 
 #### Codex
+
+1. Provider 任意名称即可（请尽量避免与openai 重名，以及避免"_"字符影响解析），如果使用 官key 推荐直接使用 codex；
+2. Model 选择自定义 BaseUrl + API 所支持的模型；
+3. Codex 默认走 response，如果是 chat，请配置环境变量 CODEX_WIRE_API="chat"。
+
+```bash
+export CODEX_BASE_URL="http://your-base-url/v1"
+export OPENAI_API_KEY="your-api-key"
+# Optional: choose wire API ("responses" or "chat")
+# If not set, Codex0 will keep Codex default behavior (recommended to set explicitly for gateways)
+export CODEX_WIRE_API="chat"
+
+harbor run \
+-p your-path/tasks \
+-o your-path/jobs \
+--agent codex0 \
+--model ppapi/claude-opus-4-5-20251101 \
+-k 1
+```
