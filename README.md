@@ -2,6 +2,13 @@
 
 Harbor-Agent-Compat 是一个面向 Harbor 的轻量级 Agent 兼容与适配层，旨在在不侵入 Harbor Agent 核心实现的前提下，为 Harbor 提供对自定义 API、模型的统一接入能力。该模块通过继承并扩展 Harbor Agent 的基类，对不同 Agent 在模型配置、Provider 行为、Base URL、Small Model 策略等方面的差异进行封装与抽象，使 Harbor 能够以一致的方式稳定调用外部 API，同时保持对 Harbor 原有执行框架与调度逻辑的完全兼容。
 
+---
+
+⚠️ This repository is archived as a compatibility prototype.
+Active development has moved to the Harbor fork.
+
+---
+
 ## Supported Agents
 
 > cc 本身支持 --ak 环境变量的传入，可自行浏览 cc 官方配置方法
